@@ -6,6 +6,7 @@ import { ThemeProviderWrapper } from "../theme-provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import LanguagesSwitcher from "@/components/languages-switcher";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const open_Sans = Open_Sans({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: { params: any }) {
   const messages: any = await getMessages({ locale });
   const title = messages.homePage.title;
   return {
-    metadataBase: new URL("https://exam.gammal.tech/"),
+    // metadataBase: new URL("https://www.example.com/"),
     title: {
       default: title,
       template: `%s | ${title}`,
@@ -43,6 +44,7 @@ export default async function RootLayout({
           <ThemeProviderWrapper>
             <div>
               <LanguagesSwitcher locale={locale} />
+              <ThemeSwitcher/>
               {children}
             </div>
           </ThemeProviderWrapper>
